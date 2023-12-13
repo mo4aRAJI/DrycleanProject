@@ -23,7 +23,7 @@ namespace DrycleanProject.Forms
                 var viewl = q.ToList();
                 dataGridView1.DataSource = viewl;
                 dataGridView1.Columns["Id"].HeaderText = "Идентификатор заказа";
-                dataGridView1.Columns["name"].HeaderText = "Название";
+                dataGridView1.Columns["nтмитame"].HeaderText = "Название";
                 dataGridView1.Columns["address1"].HeaderText = "Адрес";
                 dataGridView1.Columns["Orders"].Visible = false;
             }
