@@ -21,9 +21,6 @@ namespace DrycleanProject
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var Aw = (AddressView)Tag;
-            Aw.Tag = this;
-            Aw.Show();
             Close();
         }
 

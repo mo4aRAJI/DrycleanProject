@@ -39,7 +39,7 @@ namespace DrycleanProject.Forms
         {
             using (DrycleanersContext enty = new DrycleanersContext())
             {
-                long employeeId = Convert.ToInt16(number); // ваш клиентский паспорт
+                long employeeId = Convert.ToInt16(number);
                 // Найти заказы для данного клиента
                 var orders = enty.Orders.Where(o => o.EmployeeId == employeeId).ToList();
                 // Удалить связанные записи из таблицы items
@@ -48,7 +48,7 @@ namespace DrycleanProject.Forms
                 enty.Items.RemoveRange(itemsToDelete);
                 // Удалить заказы
                 enty.Orders.RemoveRange(orders);
-                // Удалить клиента
+                // Удалить сотрудника
                 var employeeToDelete = enty.Employees.FirstOrDefault(c => c.Id == employeeId);
                 if (employeeToDelete != null)
                 {

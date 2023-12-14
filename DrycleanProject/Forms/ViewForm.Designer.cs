@@ -94,9 +94,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(1019, 192);
             label1.Name = "label1";
-            label1.Size = new Size(117, 15);
+            label1.Size = new Size(140, 15);
             label1.TabIndex = 7;
-            label1.Text = "Фильтрация по дате";
+            label1.Text = "Фильтрация по адресам";
             // 
             // comboBox2
             // 

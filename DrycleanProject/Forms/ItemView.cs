@@ -60,7 +60,7 @@ namespace DrycleanProject.Forms
         {
             var Tf = (TablesForm)Tag;
             Tf.Show();
-            Close();
+            Hide();
         }
     }
 }

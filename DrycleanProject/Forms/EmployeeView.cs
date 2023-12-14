@@ -47,16 +47,14 @@ namespace DrycleanProject.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             EmployeeAdd Ea = new EmployeeAdd();
-            Ea.Tag = this;
             Ea.Show();
-            Hide();
         }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
             var Tf = (TablesForm)Tag;
             Tf.Show();
-            Close();
+            Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)

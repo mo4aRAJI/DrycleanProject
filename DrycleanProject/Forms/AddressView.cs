@@ -48,16 +48,14 @@ namespace DrycleanProject.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             AddressAdd Ca = new AddressAdd();
-            Ca.Tag = this;
             Ca.Show();
-            Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             var Tf = (TablesForm)Tag;
             Tf.Show();
-            Close();
+            Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)

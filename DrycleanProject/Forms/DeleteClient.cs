@@ -38,7 +38,7 @@ namespace DrycleanProject.Forms
         {
             using (DrycleanersContext enty = new DrycleanersContext())
             {
-                long clientPassport = Convert.ToInt64(number); // ваш клиентский паспорт
+                long clientPassport = Convert.ToInt64(number);
                 // Найти заказы для данного клиента
                 var orders = enty.Orders.Where(o => o.Passport == clientPassport).ToList();
                 // Удалить связанные записи из таблицы items

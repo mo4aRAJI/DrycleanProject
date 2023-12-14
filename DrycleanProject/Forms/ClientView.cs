@@ -49,7 +49,6 @@ namespace DrycleanProject.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             ClientAdd Ca = new ClientAdd();
-            Ca.Tag = this;
             Ca.Show();
         }
 
@@ -57,7 +56,7 @@ namespace DrycleanProject.Forms
         {
             var Tf = (TablesForm)Tag;
             Tf.Show();
-            Close();
+            Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
