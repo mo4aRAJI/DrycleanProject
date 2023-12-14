@@ -19,21 +19,24 @@ namespace DrycleanProject.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OrderAdd Oa = new OrderAdd();
-            Oa.Show();
+            OrderView Ov = new OrderView();
+            Ov.Tag = this;
+            Ov.Show();
             Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ClientAdd Ca = new ClientAdd();
-            Ca.Show();
+            ItemView Iv = new ItemView();
+            Iv.Tag = this;
+            Iv.Show();
             Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             EmployeeView Ev = new EmployeeView();
+            Ev.Tag = this;
             Ev.Show();
             Hide();
         }
@@ -41,6 +44,7 @@ namespace DrycleanProject.Forms
         private void button4_Click(object sender, EventArgs e)
         {
             ClientView Cv = new ClientView();
+            Cv.Tag = this;
             Cv.Show();
             Hide();
         }
@@ -48,8 +52,16 @@ namespace DrycleanProject.Forms
         private void button5_Click(object sender, EventArgs e)
         {
             AddressView Aw = new AddressView();
+            Aw.Tag = this;
             Aw.Show();
             Hide();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var main = (Main)Tag;
+            main.Show();
+            Close();
         }
     }
 }

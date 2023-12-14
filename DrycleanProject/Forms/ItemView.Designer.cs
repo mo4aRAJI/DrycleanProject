@@ -1,6 +1,6 @@
 ﻿namespace DrycleanProject.Forms
 {
-    partial class AddressView
+    partial class ItemView
     {
         /// <summary>
         /// Required designer variable.
@@ -66,7 +66,7 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
-            // AddressView
+            // ItemView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -74,8 +74,8 @@
             Controls.Add(button4);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
-            Name = "AddressView";
-            Text = "Таблица адресов филиалов";
+            Name = "ItemView";
+            Text = "Таблица предметов заказов";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }

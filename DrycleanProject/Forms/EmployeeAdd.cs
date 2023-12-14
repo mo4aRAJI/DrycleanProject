@@ -20,25 +20,66 @@ namespace DrycleanProject
 
         private void button2_Click(object sender, EventArgs e)
         {
-            EmployeeView Ev = new EmployeeView();
+            var Ev = (EmployeeView)Tag;
             Ev.Show();
-            Hide();
+            Close();
+        }
+
+        private bool AreTextBoxesFilled()
+        {
+            // Проверка, что все TextBox не пусты
+            return !string.IsNullOrWhiteSpace(textBox1.Text) &&
+                   !string.IsNullOrWhiteSpace(textBox2.Text) &&
+                   !string.IsNullOrWhiteSpace(textBox3.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (DrycleanersContext enty = new DrycleanersContext())
+            if (AreTextBoxesFilled())
             {
-                Employee employee = new Employee()
+                using (DrycleanersContext enty = new DrycleanersContext())
                 {
-                    Id = Convert.ToInt16(textBox1.Text),
-                    Fullname = textBox2.Text,
-                    Experience = Convert.ToInt16(textBox1.Text)
-                };
-                enty.Employees.Add(employee);
-                enty.SaveChanges();
+                    Employee employee = new Employee()
+                    {
+                        Id = Convert.ToInt16(textBox1.Text),
+                        Fullname = textBox2.Text,
+                        Experience = Convert.ToInt16(textBox3.Text)
+                    };
+                    enty.Employees.Add(employee);
+                    enty.SaveChanges();
+                    MessageBox.Show("Запись добавлена!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+        }
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
+            {
+                // Разрешаем ввод цифр и управляющих символов (например, Backspace)
+            }
+            else
+            {
+                // Запрещаем ввод других символов
+                e.Handled = true;
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == ',' || Char.IsControl(e.KeyChar))
+            {
+                // Разрешаем ввод букв и управляющих символов (например, Backspace)
+            }
+            else
+            {
+                // Запрещаем ввод других символов
+                e.Handled = true;
+            }
         }
     }
 }

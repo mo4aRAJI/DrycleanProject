@@ -1,6 +1,6 @@
 ﻿namespace DrycleanProject.Forms
 {
-    partial class DeleteEmployee
+    partial class DeleteItem
     {
         /// <summary>
         /// Required designer variable.
@@ -75,13 +75,13 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(365, 23);
             comboBox1.TabIndex = 3;
-            comboBox1.KeyPress += textBox2_KeyPress;
+            comboBox1.KeyPress += textBox1_KeyPress;
             // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
             comboBox2.Location = new Point(12, 115);
-            comboBox2.MaxLength = 2;
+            comboBox2.MaxLength = 150;
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(365, 23);
             comboBox2.TabIndex = 4;
@@ -92,20 +92,20 @@
             label1.AutoSize = true;
             label1.Location = new Point(10, 25);
             label1.Name = "label1";
-            label1.Size = new Size(100, 15);
+            label1.Size = new Size(59, 15);
             label1.TabIndex = 5;
-            label1.Text = "ФИО сотрудника";
+            label1.Text = "Название";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(10, 97);
             label2.Name = "label2";
-            label2.Size = new Size(108, 15);
+            label2.Size = new Size(40, 15);
             label2.TabIndex = 6;
-            label2.Text = "Стаж работы (лет)";
+            label2.Text = "Адрес";
             // 
-            // DeleteEmployee
+            // DeleteAddress
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -117,8 +117,8 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Name = "DeleteEmployee";
-            Text = "Удаление/изменение сотрудника";
+            Name = "DeleteAddress";
+            Text = "Удаление/изменение адреса";
             ResumeLayout(false);
             PerformLayout();
         }

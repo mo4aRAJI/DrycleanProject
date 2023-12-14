@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,24 +12,27 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DrycleanProject.Forms
 {
-    public partial class DeleteEmployee : Form
+    public partial class DeleteOrders : Form
     {
         private string number;
-        public DeleteEmployee(string cc)
+        public DeleteOrders(string cc)
         {
             InitializeComponent();
             this.number = cc;
             using (DrycleanersContext enty = new DrycleanersContext())
             {
-                List<string> names = enty.Employees.AsNoTracking().Select(x => x.Fullname).ToList();
-                List<short> exp = enty.Employees.AsNoTracking().Select(x => x.Experience).ToList();
-                comboBox2.Items.Clear();
+                List<string> nameEmployee = enty.Employees.AsNoTracking().Select(x => x.Fullname).ToList();
+                List<string> nameClient = enty.Clients.AsNoTracking().Select(x => x.Fullname).ToList();
+                List<string> address = enty.Addresses.AsNoTracking().Select(x => x.Address1).ToList();
                 comboBox1.Items.Clear();
-                var combinedList = names.Zip(names, (name, exp) => new { Name = name, Experience = exp });
-                foreach (var elem in combinedList)
+                comboBox2.Items.Clear();
+                comboBox3.Items.Clear();
+                int count = Math.Min(Math.Min(nameEmployee.Count, nameClient.Count), address.Count);
+                for (int i = 0; i < count; i++)
                 {
-                    comboBox1.Items.Add(elem.Name);
-                    comboBox2.Items.Add(elem.Experience);
+                    comboBox1.Items.Add(nameEmployee[i]);
+                    comboBox2.Items.Add(nameClient[i]);
+                    comboBox3.Items.Add(address[i]);
                 }
             }
         }
@@ -39,21 +41,14 @@ namespace DrycleanProject.Forms
         {
             using (DrycleanersContext enty = new DrycleanersContext())
             {
-                long employeeId = Convert.ToInt16(number); // ваш клиентский паспорт
-                // Найти заказы для данного клиента
-                var orders = enty.Orders.Where(o => o.EmployeeId == employeeId).ToList();
+                long orderId = Convert.ToInt16(number);
+                var orders = enty.Orders.Where(o => o.Id == orderId).ToList();
                 // Удалить связанные записи из таблицы items
                 var orderIds = orders.Select(o => o.Id);
                 var itemsToDelete = enty.Items.Where(i => orderIds.Contains(i.OrderId)).ToList();
                 enty.Items.RemoveRange(itemsToDelete);
                 // Удалить заказы
                 enty.Orders.RemoveRange(orders);
-                // Удалить клиента
-                var employeeToDelete = enty.Employees.FirstOrDefault(c => c.Id == employeeId);
-                if (employeeToDelete != null)
-                {
-                    enty.Employees.Remove(employeeToDelete);
-                }
                 // Сохранить изменения в базе данных
                 enty.SaveChanges();
                 MessageBox.Show("Запись удалена!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -62,24 +57,41 @@ namespace DrycleanProject.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
+            OrderView Ov = new OrderView();
+            Ov.Show();
             Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
             using (DrycleanersContext enty = new DrycleanersContext())
             {
-                short employeeId = Convert.ToInt16(number);
-                // Создаем объект Client с обновленными значениями
-                Employee updatedEmployee = new Employee()
+                int employeeId = enty.Employees.AsNoTracking()
+                    .Where(x => x.Fullname == comboBox1.Text)
+                    .Select(x => x.Id)
+                    .FirstOrDefault();
+                long clientId = enty.Clients.AsNoTracking()
+                    .Where(x => x.Fullname == comboBox2.Text)
+                    .Select(x => x.Passport)
+                    .FirstOrDefault();
+                short addressId = enty.Addresses.AsNoTracking()
+                    .Where(x => x.Address1 == comboBox3.Text)
+                    .Select(x => x.Id)
+                    .FirstOrDefault();
+                short orderId = Convert.ToInt16(number);
+                // Создаем объект Order с обновленными значениями
+                Order updatedOrder = new Order()
                 {
-                    Id = employeeId,
-                    Fullname = comboBox1.Text,
-                    Experience = Convert.ToInt16(comboBox2.Text)
+                    Id = orderId,
+                    EmployeeId = employeeId,
+                    Passport = clientId,
+                    AddressId = addressId,
+                    Date = DateTime.Now.ToUniversalTime(),
+                    Status = comboBox4.Text,
+                    Cost = Convert.ToInt16(textBox1.Text)
                 };
                 // Помечаем запись как измененную и сохраняем изменения
-                enty.Employees.Update(updatedEmployee);
+                enty.Orders.Update(updatedOrder);
                 enty.SaveChanges();
                 MessageBox.Show("Запись изменена!", "Изменение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -111,4 +123,6 @@ namespace DrycleanProject.Forms
             }
         }
     }
+
 }
+

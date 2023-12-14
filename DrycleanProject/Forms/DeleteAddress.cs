@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,35 +12,42 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DrycleanProject.Forms
 {
-    public partial class DeleteEmployee : Form
+    public partial class DeleteItem : Form
     {
         private string number;
-        public DeleteEmployee(string cc)
+        public DeleteItem(string cc)
         {
             InitializeComponent();
             this.number = cc;
             using (DrycleanersContext enty = new DrycleanersContext())
             {
-                List<string> names = enty.Employees.AsNoTracking().Select(x => x.Fullname).ToList();
-                List<short> exp = enty.Employees.AsNoTracking().Select(x => x.Experience).ToList();
+                List<string> names = enty.Addresses.AsNoTracking().Select(x => x.Name).ToList();
+                List<string> address = enty.Addresses.AsNoTracking().Select(x => x.Address1).ToList();
                 comboBox2.Items.Clear();
                 comboBox1.Items.Clear();
-                var combinedList = names.Zip(names, (name, exp) => new { Name = name, Experience = exp });
+                var combinedList = names.Zip(address, (name, addr) => new { Name = name, Address = addr });
                 foreach (var elem in combinedList)
                 {
                     comboBox1.Items.Add(elem.Name);
-                    comboBox2.Items.Add(elem.Experience);
+                    comboBox2.Items.Add(elem.Address);
                 }
             }
+        }
+
+        private bool AreTextBoxesFilled()
+        {
+            // Проверка, что все TextBox не пусты
+            return !string.IsNullOrWhiteSpace(comboBox1.Text) &&
+                   !string.IsNullOrWhiteSpace(comboBox2.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             using (DrycleanersContext enty = new DrycleanersContext())
             {
-                long employeeId = Convert.ToInt16(number); // ваш клиентский паспорт
+                long addressId = Convert.ToInt16(number);
                 // Найти заказы для данного клиента
-                var orders = enty.Orders.Where(o => o.EmployeeId == employeeId).ToList();
+                var orders = enty.Orders.Where(o => o.AddressId == addressId).ToList();
                 // Удалить связанные записи из таблицы items
                 var orderIds = orders.Select(o => o.Id);
                 var itemsToDelete = enty.Items.Where(i => orderIds.Contains(i.OrderId)).ToList();
@@ -49,10 +55,10 @@ namespace DrycleanProject.Forms
                 // Удалить заказы
                 enty.Orders.RemoveRange(orders);
                 // Удалить клиента
-                var employeeToDelete = enty.Employees.FirstOrDefault(c => c.Id == employeeId);
-                if (employeeToDelete != null)
+                var addressToDelete = enty.Addresses.FirstOrDefault(c => c.Id == addressId);
+                if (addressToDelete != null)
                 {
-                    enty.Employees.Remove(employeeToDelete);
+                    enty.Addresses.Remove(addressToDelete);
                 }
                 // Сохранить изменения в базе данных
                 enty.SaveChanges();
@@ -67,38 +73,24 @@ namespace DrycleanProject.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-
             using (DrycleanersContext enty = new DrycleanersContext())
             {
-                short employeeId = Convert.ToInt16(number);
-                // Создаем объект Client с обновленными значениями
-                Employee updatedEmployee = new Employee()
+                short addressId = Convert.ToInt16(number);
+                // Создаем объект Address с обновленными значениями
+                Address updatedAddress = new Address()
                 {
-                    Id = employeeId,
-                    Fullname = comboBox1.Text,
-                    Experience = Convert.ToInt16(comboBox2.Text)
+                    Id = addressId,
+                    Name = comboBox1.Text,
+                    Address1 = comboBox2.Text
                 };
                 // Помечаем запись как измененную и сохраняем изменения
-                enty.Employees.Update(updatedEmployee);
+                enty.Addresses.Update(updatedAddress);
                 enty.SaveChanges();
                 MessageBox.Show("Запись изменена!", "Изменение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
-            {
-                // Разрешаем ввод цифр и управляющих символов (например, Backspace)
-            }
-            else
-            {
-                // Запрещаем ввод других символов
-                e.Handled = true;
-            }
-        }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsLetter(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == ',' || Char.IsControl(e.KeyChar))
             {

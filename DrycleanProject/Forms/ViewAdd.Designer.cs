@@ -1,6 +1,6 @@
 ﻿namespace DrycleanProject.Forms
 {
-    partial class OrderAdd
+    partial class ViewAdd
     {
         /// <summary>
         /// Required designer variable.
@@ -42,7 +42,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(12, 288);
+            button1.Location = new Point(12, 302);
             button1.Name = "button1";
             button1.Size = new Size(131, 61);
             button1.TabIndex = 3;
@@ -52,7 +52,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(248, 288);
+            button2.Location = new Point(248, 302);
             button2.Name = "button2";
             button2.Size = new Size(131, 61);
             button2.TabIndex = 4;
@@ -63,7 +63,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(12, 19);
             label1.Name = "label1";
             label1.Size = new Size(131, 15);
             label1.TabIndex = 2;
@@ -72,7 +72,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 172);
+            label2.Location = new Point(12, 188);
             label2.Name = "label2";
             label2.Size = new Size(92, 15);
             label2.TabIndex = 3;
@@ -82,14 +82,14 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(12, 190);
+            comboBox1.Location = new Point(12, 206);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(367, 23);
             comboBox1.TabIndex = 6;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(12, 27);
+            textBox1.Location = new Point(12, 37);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(367, 23);
             textBox1.TabIndex = 8;
@@ -98,8 +98,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.IntegralHeight = false;
-            comboBox2.Location = new Point(12, 80);
+            comboBox2.Location = new Point(12, 93);
             comboBox2.MaxLength = 10;
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(367, 23);
@@ -109,7 +108,7 @@
             // comboBox3
             // 
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(12, 134);
+            comboBox3.Location = new Point(12, 147);
             comboBox3.MaxLength = 50;
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(367, 23);
@@ -119,7 +118,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 60);
+            label4.Location = new Point(12, 75);
             label4.Name = "label4";
             label4.Size = new Size(46, 15);
             label4.TabIndex = 12;
@@ -128,17 +127,17 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 113);
+            label5.Location = new Point(12, 129);
             label5.Name = "label5";
             label5.Size = new Size(151, 15);
             label5.TabIndex = 13;
             label5.Text = "Ответственный сотрудник";
             // 
-            // OrderAdd
+            // ViewAdd
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(391, 372);
+            ClientSize = new Size(397, 421);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(comboBox3);
@@ -149,7 +148,7 @@
             Controls.Add(label1);
             Controls.Add(button2);
             Controls.Add(button1);
-            Name = "OrderAdd";
+            Name = "ViewAdd";
             Text = "Добавление заказа";
             ResumeLayout(false);
             PerformLayout();

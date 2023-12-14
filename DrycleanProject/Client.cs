@@ -11,7 +11,7 @@ public partial class Client
 
     public string Phonenumber { get; set; } = null!;
 
-    public short Discount { get; set; }
+    public short? Discount { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

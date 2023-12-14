@@ -10,37 +10,25 @@ namespace DrycleanProject
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OrderAdd Oa = new OrderAdd();
-            Oa.Show();
-            Hide();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ClientAdd Ca = new ClientAdd();
-            Ca.Show();
-            Hide();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            DeleteEmployee De = new DeleteEmployee();
-            De.Show();
-            Hide();
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             TablesForm Tf = new TablesForm();
+            Tf.Tag = this;
             Tf.Show();
             Hide();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            ViewForm Vf = new ViewForm();
+            Vf.Tag = this;
+            Vf.Show();
+            Hide();
         }
     }
 }

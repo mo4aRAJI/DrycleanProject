@@ -31,6 +31,7 @@
             button4 = new Button();
             label1 = new Label();
             button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button4
@@ -55,7 +56,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(101, 172);
+            button1.Location = new Point(101, 274);
             button1.Name = "button1";
             button1.Size = new Size(184, 66);
             button1.TabIndex = 5;
@@ -63,11 +64,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_1;
             // 
+            // button2
+            // 
+            button2.Location = new Point(101, 179);
+            button2.Name = "button2";
+            button2.Size = new Size(184, 66);
+            button2.TabIndex = 6;
+            button2.Text = "Сводная информация";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click_1;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(391, 415);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(button4);
@@ -81,5 +93,6 @@
         private Button button4;
         private Label label1;
         private Button button1;
+        private Button button2;
     }
 }

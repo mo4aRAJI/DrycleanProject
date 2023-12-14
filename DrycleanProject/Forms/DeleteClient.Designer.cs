@@ -1,6 +1,6 @@
 ﻿namespace DrycleanProject.Forms
 {
-    partial class DeleteEmployee
+    partial class DeleteClient
     {
         /// <summary>
         /// Required designer variable.
@@ -35,11 +35,13 @@
             comboBox2 = new ComboBox();
             label1 = new Label();
             label2 = new Label();
+            label3 = new Label();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(115, 246);
+            button1.Location = new Point(115, 294);
             button1.Name = "button1";
             button1.Size = new Size(163, 67);
             button1.TabIndex = 0;
@@ -49,7 +51,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(115, 383);
+            button2.Location = new Point(115, 431);
             button2.Name = "button2";
             button2.Size = new Size(163, 67);
             button2.TabIndex = 1;
@@ -59,7 +61,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(115, 160);
+            button3.Location = new Point(115, 208);
             button3.Name = "button3";
             button3.Size = new Size(163, 67);
             button3.TabIndex = 2;
@@ -80,8 +82,8 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(12, 115);
-            comboBox2.MaxLength = 2;
+            comboBox2.Location = new Point(12, 102);
+            comboBox2.MaxLength = 11;
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(365, 23);
             comboBox2.TabIndex = 4;
@@ -92,24 +94,44 @@
             label1.AutoSize = true;
             label1.Location = new Point(10, 25);
             label1.Name = "label1";
-            label1.Size = new Size(100, 15);
+            label1.Size = new Size(81, 15);
             label1.TabIndex = 5;
-            label1.Text = "ФИО сотрудника";
+            label1.Text = "ФИО клиента";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(10, 97);
+            label2.Location = new Point(10, 84);
             label2.Name = "label2";
-            label2.Size = new Size(108, 15);
+            label2.Size = new Size(101, 15);
             label2.TabIndex = 6;
-            label2.Text = "Стаж работы (лет)";
+            label2.Text = "Номер телефона";
             // 
-            // DeleteEmployee
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(10, 147);
+            label3.Name = "label3";
+            label3.Size = new Size(124, 15);
+            label3.TabIndex = 8;
+            label3.Text = "Скидка (в процентах)";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(12, 165);
+            textBox1.MaxLength = 2;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(365, 23);
+            textBox1.TabIndex = 9;
+            textBox1.KeyPress += textBox1_KeyPress;
+            // 
+            // DeleteClient
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(389, 462);
+            ClientSize = new Size(389, 507);
+            Controls.Add(textBox1);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(comboBox2);
@@ -117,8 +139,8 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Name = "DeleteEmployee";
-            Text = "Удаление/изменение сотрудника";
+            Name = "DeleteClient";
+            Text = "Удаление/изменение данных клиентов";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -132,5 +154,7 @@
         private ComboBox comboBox2;
         private Label label1;
         private Label label2;
+        private Label label3;
+        private TextBox textBox1;
     }
 }

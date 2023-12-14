@@ -43,23 +43,29 @@
             // textBox1
             // 
             textBox1.Location = new Point(12, 35);
+            textBox1.MaxLength = 10;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(367, 23);
             textBox1.TabIndex = 0;
+            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // textBox2
             // 
             textBox2.Location = new Point(12, 103);
+            textBox2.MaxLength = 50;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(367, 23);
             textBox2.TabIndex = 1;
+            textBox2.KeyPress += textBox2_KeyPress;
             // 
             // textBox3
             // 
             textBox3.Location = new Point(12, 176);
+            textBox3.MaxLength = 11;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(367, 23);
             textBox3.TabIndex = 2;
+            textBox3.KeyPress += textBox1_KeyPress;
             // 
             // button1
             // 
@@ -111,9 +117,11 @@
             // textBox4
             // 
             textBox4.Location = new Point(12, 255);
+            textBox4.MaxLength = 2;
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(367, 23);
             textBox4.TabIndex = 8;
+            textBox4.KeyPress += textBox1_KeyPress;
             // 
             // label4
             // 

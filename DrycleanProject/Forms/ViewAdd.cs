@@ -1,22 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.Design.Serialization;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DrycleanProject.Forms
 {
-    public partial class OrderAdd : Form
+    public partial class ViewAdd : Form
     {
-        public OrderAdd()
+        public ViewAdd()
         {
             InitializeComponent();
             using (DrycleanersContext enty = new DrycleanersContext())
@@ -85,6 +82,10 @@ namespace DrycleanProject.Forms
                         enty.Orders.Add(order);
                         enty.SaveChanges();
                         MessageBox.Show("Запись добавлена!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ItemAdd Ia = new ItemAdd();
+                        Ia.Tag = this;
+                        Ia.Show();
+                        Close();
                     }
                     else
                     {
@@ -104,8 +105,8 @@ namespace DrycleanProject.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var Ov = (OrderView)Tag;
-            Ov.Show();
+            var Vf = (ViewForm)Tag;
+            Vf.Show();
             Close();
         }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -135,4 +136,3 @@ namespace DrycleanProject.Forms
         }
     }
 }
-

@@ -44,20 +44,25 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(367, 23);
             textBox1.TabIndex = 0;
+            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // textBox2
             // 
             textBox2.Location = new Point(12, 103);
+            textBox2.MaxLength = 50;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(367, 23);
             textBox2.TabIndex = 1;
+            textBox2.KeyPress += textBox2_KeyPress;
             // 
             // textBox3
             // 
             textBox3.Location = new Point(12, 176);
+            textBox3.MaxLength = 150;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(367, 23);
             textBox3.TabIndex = 2;
+            textBox3.KeyPress += textBox2_KeyPress;
             // 
             // button1
             // 
